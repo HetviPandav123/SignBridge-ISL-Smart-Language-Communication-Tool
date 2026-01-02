@@ -154,7 +154,8 @@ python sentence_builder.py
 
 ## 🧠 Outcome
 
-This system enables **real-time ISL to speech translation**, making communication more accessible for the hearing-impaired community.
+This system enables **real-time ISL to speech translation**, making communication more accessible for the hearing-impaired and muted community.
+
 
 ---
 
