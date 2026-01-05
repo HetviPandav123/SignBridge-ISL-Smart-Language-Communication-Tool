@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/71d4b8d2-443e-41b3-a5e7-9cc44beda388
+
 # Indian Sign Language Smart Communication Tool
 
 A real-time **Indian Sign Language (ISL) recognition system** that converts hand gestures into **text and speech** using Computer Vision and Machine Learning. The project supports both **static alphabet signs (A–Z)** and **dynamic word-level signs (Hello, Thank You)**.
