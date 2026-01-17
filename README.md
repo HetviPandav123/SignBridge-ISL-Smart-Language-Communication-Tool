@@ -173,6 +173,8 @@ https://github.com/user-attachments/assets/52a8b8ed-b645-4b15-99c0-eb7084307ea5
 * Uses **online Google Text-to-Speech (gTTS)**
 * Press **S** to speak the sentence
 * Temporary audio files auto-deleted
+  
+https://github.com/user-attachments/assets/0291d2be-7cc2-4521-8bce-1b288516b94a
 
 ---
 
@@ -232,7 +234,6 @@ This system enables **real-time ISL to speech translation**, making communicatio
 BE – Artificial Intelligence & Machine Learning
 
 
-https://github.com/user-attachments/assets/0291d2be-7cc2-4521-8bce-1b288516b94a
 
 
 ---
