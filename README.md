@@ -1,184 +1,145 @@
+🧏‍♀️ SignBridge — Indian Sign Language Smart Communication System
+SignBridge is a real-time Indian Sign Language (ISL) to Text communication system that converts static and dynamic hand gestures into readable sentences, with live translation support, using Computer Vision + Machine Learning.
 
+🎯 Project Features
+✅ Works as a single-click executable (SignBridge.exe)
+🖐️ Real-time hand tracking using MediaPipe
+🔤 Static ISL alphabet recognition (A–Z)
+🎥 Dynamic word recognition (e.g. Hello, Thank You)
+🧠 Intelligent motion-based switching between static & dynamic signs
+📝 Automatic sentence building with spacing logic
+🌐 Live translation (English ↔ Hindi)
+🖥️ Web-based UI served locally via Flask
+🔄 Real-time frontend updates using Socket.IO
+⚡ Optimized for performance & deployment (PyInstaller-ready)
+🧠 How the System Works (Core Logic)
 
+Motion-Based Intelligence Low motion (stable hand) → Static sign detection (letters) Continuous motion → Dynamic sign detection (words) Prevents repeated predictions using locking & cooldown logic Smart Sentence Builder Automatically adds letters and words Inserts spaces intelligently Supports clearing & backspacing Refines output into readable sentences
 
+🛠️ Tech Stack
+Core Technologies
 
-# Indian Sign Language Smart Communication Tool
+Python
+OpenCV
+MediaPipe
+NumPy, Pandas
+Scikit-learn
+TensorFlow / Keras (for dynamic signs)
+gTTS (Online Text-to-Speech)
+ONNX Runtime
+Backend
 
-A real-time **Indian Sign Language (ISL) recognition system** that converts hand gestures into **text and speech** using Computer Vision and Machine Learning. The project supports both **static alphabet signs (A–Z)** and **dynamic word-level signs (Hello, Thank You)**.
+Flask
+Flask-SocketIO (threading mode)
+Frontend
 
----
+HTML / CSS / JavaScript
+WebSockets for live updates
+Deployment
 
-## 🎯 Project Features
-
-* 🖐️ Real-time hand tracking using **MediaPipe**
-* 🔤 Static sign recognition (A–Z)
-* 🎥 Dynamic sign recognition (Hello, Thank You)
-* 📝 Sentence builder with space & backspace logic
-* 🔊 Online Text-to-Speech (Google TTS)
-* 🧠 Trained ML models included using **Git LFS**
-
----
-
-## 🛠️ Tech Stack
-
-* Python
-* OpenCV
-* MediaPipe
-* NumPy, Pandas
-* Scikit-learn
-* TensorFlow / Keras (for dynamic signs)
-* gTTS (Online Text-to-Speech)
-
----
-
-## 📂 Project Structure
-
-```
-sign_lang_smart_comm/
-├── dataset/                 # Static alphabet CSV datasets (A–Z)
-├── dynamic_dataset/         # Dynamic sign .npy datasets
-│   ├── hello/
-│   └── thank_you/
-├── train_model.py           # Static model training
-├── train_dynamic_model.py   # Dynamic model training
-├── sentence_builder.py      # Real-time recognition + speech
-├── isl_alphabet_model.pkl   # Trained static model
-├── dynamic_sign_model.h5    # Trained dynamic model
-├── .gitattributes           # Git LFS tracking
+PyInstaller
+Git LFS (for large .exe & model files)
+📂 Project Structure
+sign-language-smart-communication/
+│
+├── app.py                     # Main application (backend + ML logic)
+├── templates/
+│   └── index.html             # Frontend UI
+├── static/
+│   └── assets/                # CSS, JS, images
+│
+├── isl_alphabet_model.pkl     # Static sign ML model
+├── dynamic_sign_model.onnx    # Dynamic sign ONNX model
+│
+├── dist/
+│   └── SignBridge.exe         # Final Windows executable (Git LFS)
+│
+├── .gitattributes             # Git LFS configuration
 ├── .gitignore
-└── README.md
-```
+├── README.md
 
----
 
-## ✋ Static Sign Recognition (A–Z)
+🖥️ User Interface
+Live camera feed
+Displays: Current detected sign Constructed sentence Translated sentence
+Runs automatically in browser at: http://127.0.0.1:5000
+Browser opens automatically when the app starts. final_system
+✋ Static Sign Recognition (A–Z)
+Dataset
+Each alphabet (A–Z) has its own folder
+Data stored as data.csv
+Each row contains 126 features (21 landmarks × 3 × 2 hands)
+Training
+All CSV files are merged
 
-### Dataset
+Labels assigned per alphabet
 
-* Each alphabet (A–Z) has its own folder
-* Data stored as `data.csv`
-* Each row contains **126 features** (21 landmarks × 3 × 2 hands)
+Model trained using Scikit-learn
 
-### Training
+Saved as:
 
-* All CSV files are merged
-* Labels assigned per alphabet
-* Model trained using Scikit-learn
-* Saved as:
-
-  ```
-  isl_alphabet_model.pkl
-  ```
-https://github.com/user-attachments/assets/71d4b8d2-443e-41b3-a5e7-9cc44beda388
----
-
-## 🎥 Dynamic Sign Recognition (Hello & Thank You)
-
-### Dataset Creation
-
-* Short videos recorded for each word
-* MediaPipe extracts landmarks **per frame**
-* Each frame → 126 features
-* Frames combined into fixed-length sequences
-* Saved as `.npy` files
-
+isl_alphabet_model.pkl
+ ISL_smart_tool_at_97.mp4 
+🎥 Dynamic Sign Recognition (Hello & Thank You)
+Dataset Creation
+Short videos recorded for each word
+MediaPipe extracts landmarks per frame
+Each frame → 126 features
+Frames combined into fixed-length sequences
+Saved as .npy files
 Example shape:
 
-```
 (sequence_length, 126)
-```
+Training
+.npy sequences loaded
 
-### Training
+Labels assigned (hello / thank_you)
 
-* `.npy` sequences loaded
-* Labels assigned (hello / thank_you)
-* Sequence-based model (LSTM)
-* Saved as:
+Sequence-based model (LSTM)
 
-  ```
-  dynamic_sign_model.h5
-  dynamic_sign_model.pkl
-  ```
+Saved as:
 
----
+dynamic_sign_model.h5
+dynamic_sign_model.pkl
+ VID_20251231_123543_321.mp4 
+🔄 Real-Time Logic
+Low motion → Static model (letters)
+High motion → Dynamic model (words)
+Static letters form sentences
+Dynamic words are displayed/spoken directly
+🔊 Text-to-Speech
+Uses online Google Text-to-Speech (gTTS)
+Press S to speak the sentence
+Temporary audio files auto-deleted
+⌨️ Controls
+Key	Action
+q	Quit application
+s	Speak sentence
+b	Backspace (delete last character)
+c	Clear Sentence
+🚀 Running the Application
+🔹 Option 1: End User (Recommended)
 
+Download SignBridge.exe from dist
+Double-click to run Browser opens automatically Start signing ✋ No Python installation required.
 
-https://github.com/user-attachments/assets/52a8b8ed-b645-4b15-99c0-eb7084307ea5
+🔹 Option 2: Developer Mode
 
+pip install -r requirements.txt python app.py
 
-## 🔄 Real-Time Logic
+📦 Large Files & Git LFS
+This repository uses Git LFS for: .exe files ML model files
 
-* **Low motion** → Static model (letters)
-* **High motion** → Dynamic model (words)
-* Static letters form sentences
-* Dynamic words are displayed/spoken directly
+Clone Properly
 
----
+git lfs install git clone https://github.com/HetviPandav123/sign-language-smart-communication.git git lfs pull
 
-## 🔊 Text-to-Speech
+🧠 Outcome
+This system enables real-time ISL to speech translation, making communication more accessible for the hearing-impaired and muted community.
 
-* Uses **online Google Text-to-Speech (gTTS)**
-* Press **S** to speak the sentence
-* Temporary audio files auto-deleted
+👩‍💻 Author
+Hetvi Pandav BE – Artificial Intelligence & Machine Learning
 
----
-
-## ⌨️ Controls
-
-| Key | Action                            |
-| --- | --------------------------------- |
-| q   | Quit application                  |
-| s   | Speak sentence                    |
-| b   | Backspace (delete last character) |
-
----
-
-## 📦 Model Files & Git LFS
-
-Large files are tracked using **Git LFS**:
-
-```
-*.pkl
-*.h5
-```
-
-Make sure Git LFS is installed before cloning:
-
-```
-git lfs install
-git lfs pull
-```
-
----
-
-## 🚀 How to Run
-
-```bash
-pip install -r requirements.txt
-python sentence_builder.py
-```
-
----
-
-## 🧠 Outcome
-
-This system enables **real-time ISL to speech translation**, making communication more accessible for the hearing-impaired and muted community.
-
-
----
-
-## 👩‍💻 Author
-
-**Hetvi Pandav**
-BE – Artificial Intelligence & Machine Learning
-
-
-https://github.com/user-attachments/assets/0291d2be-7cc2-4521-8bce-1b288516b94a
-
-
----
-
+ ISL_speech_attempt1.mp4 
 ⭐ If you found this project useful, feel free to star the repository!
-
-
 
